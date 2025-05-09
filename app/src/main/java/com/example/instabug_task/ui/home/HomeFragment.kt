@@ -1,13 +1,19 @@
 package com.example.instabug_task.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.instabug_task.data.datasourse.LocalDataSource
+import com.example.instabug_task.data.mapper.WeatherMapper
+import com.example.instabug_task.data.repository.WeatherRepositoryImp
+import com.example.instabug_task.data.utils.NetworkChecker
 import com.example.instabug_task.databinding.FragmentHomeBinding
+import com.example.instabugtask.data.datasource.RemoteDataSource
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +39,11 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onDestroyView() {
