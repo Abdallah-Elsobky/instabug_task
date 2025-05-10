@@ -1,20 +1,30 @@
-package com.example.instabugtask.data.remote
+package com.example.instabug_task.data.remote
 
 import com.example.instabug_task.data.model.Response
-import com.example.instabugtask.data.utils.JsonParser.parseWeatherResponse
+import com.example.instabug_task.data.utils.JsonParser.parseWeatherResponse
 import java.net.HttpURLConnection
 import java.net.URL
 
 object WeatherAPIService {
-    private fun sendGet(link: String): String {
-        val url = URL(link)
-        with(url.openConnection() as HttpURLConnection) {
-            requestMethod = "GET"
-            return inputStream.bufferedReader().use { it.readText() }
-        }
+
+    fun getResponse(url: String, callback: (Response?) -> Unit) {
+        Thread {
+            try {
+                val responseText = sendGet(url)
+                val response = parseWeatherResponse(responseText)
+                callback(response)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                callback(null)
+            }
+        }.start()
     }
 
-    fun getResponse(url: String): Response {
-        return parseWeatherResponse(sendGet(url))
+    private fun sendGet(link: String): String {
+        val url = URL(link)
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+
+        return connection.inputStream.bufferedReader().use { it.readText() }
     }
 }

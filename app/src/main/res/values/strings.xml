@@ -5,6 +5,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="location_permission">Location Permission</string>
     <string name="_5_day_forecast">5-day forecast</string>
+    <string name="dialog_title">Dialog title</string>
+    <string name="unknown">Unknown</string>
+    <string name="background">Background</string>
+    <string name="day_state">Day State</string>
+    <string name="day_conditions">Day Conditions</string>
 </resources>

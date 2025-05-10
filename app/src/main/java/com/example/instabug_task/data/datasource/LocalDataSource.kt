@@ -1,13 +1,12 @@
-package com.example.instabug_task.data.datasourse
+package com.example.instabug_task.data.datasource
 
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import com.example.instabug_task.data.datasource.dataStore
 import com.example.instabug_task.data.model.Response
-import com.example.instabugtask.data.utils.JsonParser.parseWeatherResponse
+import com.example.instabug_task.data.utils.JsonParser.parseWeatherResponse
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.flow.first
 import org.json.JSONArray
@@ -29,6 +28,7 @@ class LocalDataSource(private val context: Context) {
             val jsonObject = JSONObject()
             jsonObject.put("latitude", data.latitude)
             jsonObject.put("longitude", data.longitude)
+            jsonObject.put("timezone", data.timezone)
             jsonObject.put("resolvedAddress", data.resolvedAddress)
             jsonObject.put("address", data.address)
             jsonObject.put("description", data.description)
@@ -52,6 +52,7 @@ class LocalDataSource(private val context: Context) {
                 day.put("tempmin", it.tempmin)
                 day.put("temp", it.temp)
                 day.put("description", it.description)
+                day.put("conditions", it.conditions)
                 day.put("icon", it.icon)
                 daysArray.put(day)
             }
@@ -62,6 +63,7 @@ class LocalDataSource(private val context: Context) {
             }
             true
         } catch (e: Exception) {
+            Log.e("testo", e.message.toString())
             false
         }
     }

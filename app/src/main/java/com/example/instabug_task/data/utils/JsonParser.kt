@@ -1,4 +1,4 @@
-package com.example.instabugtask.data.utils
+package com.example.instabug_task.data.utils
 
 import com.example.instabug_task.data.model.CurrentConditions
 import com.example.instabug_task.data.model.DaysItem
@@ -16,7 +16,7 @@ object JsonParser{
         val resolvedAddress = jsonObject.optString("resolvedAddress")
         val address = jsonObject.optString("address")
         val description = jsonObject.optString("description")
-
+        val timezone = jsonObject.optString("timezone")
         val currentConditionsJson = jsonObject.optJSONObject("currentConditions")
         val currentConditions = currentConditionsJson?.let {
             CurrentConditions(
@@ -40,6 +40,7 @@ object JsonParser{
                     tempmin = dayObj.optDouble("tempmin"),
                     temp = dayObj.optDouble("temp"),
                     description = dayObj.optString("description"),
+                    conditions = dayObj.optString("conditions"),
                     icon = dayObj.optString("icon")
                 )
             )
@@ -50,6 +51,7 @@ object JsonParser{
             longitude = longitude,
             resolvedAddress = resolvedAddress,
             address = address,
+            timezone = timezone,
             description = description,
             days = days,
             currentConditions = currentConditions

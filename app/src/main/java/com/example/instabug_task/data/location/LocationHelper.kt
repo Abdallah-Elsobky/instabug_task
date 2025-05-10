@@ -1,10 +1,11 @@
-package com.example.instabug_task.location
+package com.example.instabug_task.data.location
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.app.Activity
+import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
@@ -16,12 +17,12 @@ import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 
 class LocationHelper(
-    private val activity: Activity,
+    private val context: Context,
     private val permissionHandler: PermissionHandler
 ) {
 
     private var fusedLocationClient: FusedLocationProviderClient =
-        LocationServices.getFusedLocationProviderClient(activity)
+        LocationServices.getFusedLocationProviderClient(context)
 
     private var resolutionForResultLauncher: ActivityResultLauncher<IntentSenderRequest>? = null
     private var locationCallback: ((String?) -> Unit)? = null
@@ -34,7 +35,7 @@ class LocationHelper(
         locationCallback = callback
 
         if (ActivityCompat.checkSelfPermission(
-                activity,
+                context,
                 ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -49,7 +50,7 @@ class LocationHelper(
         val locationRequest = createLocationRequest()
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
 
-        val client = LocationServices.getSettingsClient(activity)
+        val client = LocationServices.getSettingsClient(context)
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
 
         task.addOnSuccessListener {
@@ -63,10 +64,11 @@ class LocationHelper(
                         IntentSenderRequest.Builder(exception.resolution).build()
                     resolutionForResultLauncher?.launch(intentSenderRequest)
                 } catch (e: IntentSender.SendIntentException) {
+                    Log.e("testo", e.message.toString())
                     locationCallback?.invoke(null)
                 }
             } else {
-                Toast.makeText(activity, "GPS is disabled", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "GPS is disabled", Toast.LENGTH_SHORT).show()
                 locationCallback?.invoke(null)
             }
         }
@@ -74,7 +76,7 @@ class LocationHelper(
 
     private fun fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
-                activity,
+                context,
                 ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {

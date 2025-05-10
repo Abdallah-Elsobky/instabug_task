@@ -5,7 +5,7 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:backgroundTint="#E0D3D3"
+    android:backgroundTint="@color/purple_transparent"
     app:cardCornerRadius="24dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,21 +17,21 @@
             android:id="@+id/dialogTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/location_permission" />
+            android:text="@string/dialog_title" />
 
         <TextView
             android:id="@+id/dialogMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,16 +53,18 @@
                 android:id="@+id/negativeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/red"
                 app:layout_constraintStart_toStartOf="parent"
+                android:textAllCaps="false"
                 android:text="@string/cancel" />
 
             <Button
                 android:id="@+id/positiveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/purple_700"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:textAllCaps="false"
                 android:text="@string/ok" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

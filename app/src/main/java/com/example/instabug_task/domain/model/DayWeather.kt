@@ -7,5 +7,6 @@ data class DayWeather(
     var tempmin: Double? = null,
     var temp: Double? = null,
     var description: String? = null,
-    var icon: String? = null,
+    var conditions: String? = null,
+    var icon: Int? = null,
 )
