@@ -17,7 +17,8 @@ class WeatherMapper {
             description = response.description,
             timezone = response.timezone,
             days = response.days.map { dayToDayWeather(it) },
-            currentConditions = currentConditionsToDayConditions(response.currentConditions)
+            currentConditions = currentConditionsToDayConditions(response.currentConditions),
+            lastUpdate = response.lastUpdate
         )
     }
 

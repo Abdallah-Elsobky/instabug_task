@@ -10,7 +10,7 @@ import org.json.JSONObject
 object JsonParser{
     fun parseWeatherResponse(json: String): Response {
         val jsonObject = JSONObject(json)
-
+        val lastUpdate = jsonObject.optString("lastUpdate")
         val latitude = jsonObject.optDouble("latitude")
         val longitude = jsonObject.optDouble("longitude")
         val resolvedAddress = jsonObject.optString("resolvedAddress")
@@ -54,7 +54,8 @@ object JsonParser{
             timezone = timezone,
             description = description,
             days = days,
-            currentConditions = currentConditions
+            currentConditions = currentConditions,
+            lastUpdate = lastUpdate
         )
     }
 }

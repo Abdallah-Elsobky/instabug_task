@@ -32,6 +32,7 @@ class LocalDataSource(private val context: Context) {
             jsonObject.put("resolvedAddress", data.resolvedAddress)
             jsonObject.put("address", data.address)
             jsonObject.put("description", data.description)
+            jsonObject.put("lastUpdate", data.lastUpdate)
 
             data.currentConditions?.let {
                 val current = JSONObject()

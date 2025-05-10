@@ -103,6 +103,7 @@ class HomeFragment : Fragment() {
             getLocationUseCase
         )
 
+
         val viewModelFactory = WeatherViewModelFactory(getWeatherDataUseCase)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WeatherViewModel::class.java)
 
@@ -144,6 +145,10 @@ class HomeFragment : Fragment() {
             append("°")
         }
 
+        binding.lastUpdate.text = buildString {
+            append("Updated at ")
+            append(weather.lastUpdate ?: getString(R.string.unknown))
+        }
         binding.country.text = weather.timezone ?: getString(R.string.unknown)
 
         val forecastDays = weather.days.take(3)
@@ -164,7 +169,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToForecast() {
-        val clickableViews = listOf(binding.forecastContainer, binding.forecastRv, binding.forecastBtn)
+        val clickableViews =
+            listOf(binding.forecastContainer, binding.forecastRv, binding.forecastBtn)
         clickableViews.forEach { view ->
             view.setOnClickListener {
                 findNavController().navigate(R.id.navigation_dashboard)

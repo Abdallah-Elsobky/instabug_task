@@ -8,5 +8,6 @@ data class Response(
 	val latitude: Any? = null,
 	val description: String? = null,
 	val days: List<DaysItem> = listOf<DaysItem>(),
-	val resolvedAddress: String? = null
+	val resolvedAddress: String? = null,
+	var lastUpdate: String? = null
 )

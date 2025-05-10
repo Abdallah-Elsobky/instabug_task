@@ -64,6 +64,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/conditions"
         app:layout_constraintStart_toStartOf="@+id/conditions"
-        app:layout_constraintTop_toBottomOf="@id/conditions"
         tools:text="Fast Wind" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,5 +5,6 @@ data class Weather(
     var description: String? = null,
     val timezone: String? = null,
     var days: List<DayWeather> = emptyList(),
-    var currentConditions: DayConditions? = DayConditions()
+    var currentConditions: DayConditions? = DayConditions(),
+    var lastUpdate: String? = null
 )
